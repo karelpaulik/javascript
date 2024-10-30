@@ -1,0 +1,95 @@
+<h4>JAVASCRIPT</h4>
+<p>"Spojování objektů, polí objektů (tabulek) ve smyslu join</p>
+<script> 
+
+    const arr1 = [
+        { id: "1", date: "2017-01-24" },
+        { id: "2", date: "2017-01-22" },
+        { id: "3", date: "2017-01-22" }
+    ];
+
+    const arr2 = [
+        { id: "1", name: "aaa", pok1: "ccc" },
+        { id: "2", name: "bbb", pok1: "ddd" }
+    ];
+
+    const obj1 = {prop1: "mm", prop2: 10};
+    const obj2 = {prop3: "nn", prop4: 20};
+
+    //spojení dvou objektů
+    obj3={...obj1,...obj2};
+    console.log(JSON.stringify(obj3,null, "  "));
+    // {
+    // "prop1": "mm",
+    // "prop2": 10,
+    // "prop3": "nn",
+    // "prop4": 20
+    // }
+
+    //spojení dvou objektů - rozdíl oproti předchozímu
+    obj4={obj1,obj2};
+    console.log(JSON.stringify(obj4,null, "  "));
+    // {
+    // "obj1": {
+    //     "prop1": "mm",
+    //     "prop2": 10
+    // },
+    // "obj2": {
+    //     "prop3": "nn",
+    //     "prop4": 20
+    // }
+    // }
+
+    //Nové pole, vytvořené ze dvou předchozích, s referencí id
+    const mergeById = arr1.map(a => (
+        { 
+        ...a,
+        ...arr2.find(b => b.id === a.id) 
+        }
+    ));
+    console.log(JSON.stringify(mergeById,null, "  "))
+    // [{
+    //     "id": "1",
+    //     "date": "2017-01-24",
+    //     "name": "aaa",
+    //     "pok1": "ccc"
+    // },
+    // {
+    //     "id": "2",
+    //     "date": "2017-01-22",
+    //     "name": "bbb",
+    //     "pok1": "ddd"
+    // },
+    // {
+    //     "id": "3",
+    //     "date": "2017-01-22"
+    // }]
+	
+    
+	
+	
+    //kopie arr2, kde přidány atributy z obj1
+    const r4 = arr2.map( a => ({
+        ...a, ...obj1
+    }));
+    console.log(r4);     
+       
+    //kopie arr2
+    const r0 = arr2.map( a => a);
+    console.log(r0);      
+
+    //kopie arr2 (jiný způsob)
+    const r1 = arr2.map( a => ({...a}));
+    console.log(r1);   
+
+    //arr2 kde jsou vybrané pouze některé attributy
+    const r2 = arr2.map( a => ({id: a.id, name: a.name}));
+    console.log(r2);   
+
+    //arr2 kde jsou vybrané pouze některé atributy (jiný způsob)
+    const r3 = arr2.map( a => {
+        return {id: a.id, name: a.name}
+    });
+    console.log(r3);  
+
+</script>
