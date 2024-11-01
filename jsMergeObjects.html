@@ -1,34 +1,36 @@
 <h4>JAVASCRIPT</h4>
 <p>"Spojování objektů, polí objektů (tabulek) ve smyslu join</p>
 <script> 
-
     const arr1 = [
-        { id: "1", date: "2017-01-24" },
-        { id: "2", date: "2017-01-22" },
-        { id: "3", date: "2017-01-22" }
+        { id: 1, date: "2017-01-24" },
+        { id: 2, date: "2017-01-22" },
+        { id: 3, date: "2017-01-22" }
     ];
 
-    const arr2 = [
-        { id: "1", name: "aaa", pok1: "ccc" },
-        { id: "2", name: "bbb", pok1: "ddd" }
-    ];
+    const arr2=[
+        {id: 1, fName: "Petr", lName: "Novák"},
+        {id: 2, fName: "Pavel", lName: "Starý"},
+        {id: 3, fName: "Jiří", lName: "Střední"}
+        ];
 
     const obj1 = {prop1: "mm", prop2: 10};
     const obj2 = {prop3: "nn", prop4: 20};
 
-    //spojení dvou objektů
-    obj3={...obj1,...obj2};
-    console.log(JSON.stringify(obj3,null, "  "));
+    {   //spojení dvou objektů
+        obj3={...obj1,...obj2};
+        console.log(JSON.stringify(obj3,null, "  "));
+    }
     // {
     // "prop1": "mm",
     // "prop2": 10,
     // "prop3": "nn",
     // "prop4": 20
     // }
-
-    //spojení dvou objektů - rozdíl oproti předchozímu
-    obj4={obj1,obj2};
-    console.log(JSON.stringify(obj4,null, "  "));
+    
+    {   //spojení dvou objektů - rozdíl oproti předchozímu
+        obj4={obj1,obj2};
+        console.log(JSON.stringify(obj4,null, "  "));
+    }
     // {
     // "obj1": {
     //     "prop1": "mm",
@@ -40,56 +42,86 @@
     // }
     // }
 
-    //Nové pole, vytvořené ze dvou předchozích, s referencí id
-    const mergeById = arr1.map(a => (
-        { 
-        ...a,
-        ...arr2.find(b => b.id === a.id) 
-        }
-    ));
-    console.log(JSON.stringify(mergeById,null, "  "))
+    {   //Nové pole, vytvořené ze dvou předchozích, s referencí id
+        const mergeById = arr1.map(a => (
+            { 
+            ...a,
+            ...arr2.find(b => b.id === a.id) 
+            }
+        ));
+        console.log("merge: ", JSON.stringify(mergeById,null, "  "))
+    }
     // [{
-    //     "id": "1",
+    //     "id": 1,
     //     "date": "2017-01-24",
-    //     "name": "aaa",
-    //     "pok1": "ccc"
+    //     "fName": "Petr",
+    //     "lName": "Novák"
     // },
     // {
-    //     "id": "2",
+    //     "id": 2,
     //     "date": "2017-01-22",
-    //     "name": "bbb",
-    //     "pok1": "ddd"
+    //     "fName": "Pavel",
+    //     "lName": "Starý"
     // },
     // {
-    //     "id": "3",
-    //     "date": "2017-01-22"
+    //     "id": 3,
+    //     "date": "2017-01-22",
+    //     "fName": "Jiří",
+    //     "lName": "Střední"
     // }]
 	
-    
-	
-	
-    //kopie arr2, kde přidány atributy z obj1
-    const r4 = arr2.map( a => ({
-        ...a, ...obj1
-    }));
-    console.log(r4);     
-       
-    //kopie arr2
-    const r0 = arr2.map( a => a);
-    console.log(r0);      
+	{   //kopie arr2, kde přidány atributy z obj1
+        const r = arr2.map( a => ({
+            ...a, ...obj1
+        }));
+        console.log(r);
+    }
 
-    //kopie arr2 (jiný způsob)
-    const r1 = arr2.map( a => ({...a}));
-    console.log(r1);   
+    {   //kopie arr2
+        const r = arr2.map( a => a);
+        console.log(r);      
+    }
 
-    //arr2 kde jsou vybrané pouze některé attributy
-    const r2 = arr2.map( a => ({id: a.id, name: a.name}));
-    console.log(r2);   
+    {   //kopie arr2 (jiný způsob)
+    const r = arr2.map( a => ({...a}));
+    console.log(r);   
+    }
 
-    //arr2 kde jsou vybrané pouze některé atributy (jiný způsob)
-    const r3 = arr2.map( a => {
-        return {id: a.id, name: a.name}
+    {    //arr2 kde jsou vybrané pouze některé attributy
+    const r = arr2.map( a => ({id: a.id, fName: a.fName}));
+    console.log(r);
+    }
+
+    {    //arr2 kde jsou vybrané pouze některé atributy (jiný způsob)
+    const r = arr2.map( a => {
+        return {id: a.id, fName: a.fName}
     });
-    console.log(r3);  
+    console.log(r);
+    }
+
+    {   //nalezení a následná editace hodnoty v tabulce
+        console.table(arr2);  //původní tabulka
+        const x = arr2.find(x => x.id==2);  //x je nový objekt, odkazující se na objekt/řádek v "arr2"
+        x.fName="Karel";                    //změnou x, měním i vyhledaný řádek v arr2
+        console.table(arr2);  //změněná tabulka
+    }
+
+    {   //vytvoření reference "y" na objekt "x"
+        const x = {id: 1, fName: "Petr", lName: "Novák"}
+        const y = x;
+        y.lName="Babák";
+        console.log(x);     //{ id: 1, fName: "Petr", lName: "Babák" }
+        console.log(y);     //{ id: 1, fName: "Petr", lName: "Babák" }
+    }
+
+    {   //vytvoření skutečně nového objektu "y" z objektu "x", shallow copy
+        const x = {id: 1, fName: "Petr", lName: "Novák"}
+        const y = {...x};
+        y.lName="Babák";
+        console.log(x);     //{ id: 1, fName: "Petr", lName: "Novák" }
+        console.log(y);     //{ id: 1, fName: "Petr", lName: "Babák" }
+    }
+    //shallow copy: {...x}  Pouze kopie objektu, ne poobjektů (podobjekty jsou referencované).
+    //deep copy: JSON.parse(JSON.stringify(x))  Kopie objektu i podobjektů.
 
 </script>
