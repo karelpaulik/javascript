@@ -1,9 +1,16 @@
 JAVASCRIPT - fetch
 ..........................................................................................
-Chrom potřebuje pro "fetch" lokálního souboru povolit CORS.
+Chrome povolení lokálního CORS.
 
 To se prování při spouštění chromu přepínači:
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="D:\temp2\pokus"
+...........................................................................................
+Mozilla povolení lokálního CORS
+
+Jedno, nebo oba dva tyto:
+about:config
+  security.fileuri.strict_origin_policy  false
+  security.enterprise_roots.enabled      true
 ...........................................................................................
 1.
 
