@@ -1,0 +1,162 @@
+<script>
+    const persons = [
+        {id: 1, fName: "Petr", lName: "Novák", age: 25},
+        {id: 2, fName: "Pavel", lName: "Starý", age: 20},
+        {id: 3, fName: "Karel", lName: "Kaláb", age: 30},
+        {id: 4, fName: "Jiří", lName: "Daněk", age: 35},
+    ];
+    console.log("persons: ", persons);
+
+    const newPersons = [
+        {id: 10, fName: "Stanislav", lName: "Havlíček", age: 33},
+        {id: 11, fName: "Radek", lName: "Smíšek", age: 34},
+    ];
+
+    //Array length---------------------------------------------------------------
+    const ln = persons.length;
+    console.log("length of persons: ", ln);
+
+    //Edit existing array--------------------------------------------------------
+    //push, pop, shift, unshift, sort, reverse, splice
+    //find, (not here presented: findIndex, findLast, findLastIndex)
+    //Note: findIndex not important for array of objects, important for single array
+    //forEach
+
+    //add new person at the end
+    persons.push({id: 5, fName: "Jan", lName: "Ondráček", age: 40});
+    console.log("persons: ", persons);
+
+    //add at the beginning: 
+    persons.unshift({id: 6, fName: "Radim", lName: "Malý", age: 40});
+    
+    //delete last person: 
+    persons.pop();
+    
+    //delete first person: 
+    persons.shift();
+
+    //add persons in the middle of array, on position "2", no object remove
+    persons.splice(2,0,{id: 7, fName: "Filip", lName: "Bláha", age: 31});
+    console.log("persons: ", persons);
+
+    //delete persons in the middle of array
+    persons.splice(2,1)
+    console.log("persons: ", persons);
+
+    //reverse persons order
+    persons.reverse();
+
+    //sort accordint to the age, ascending: x-y, descending: y-x
+    const o2 = persons.sort( (x,y) => x.age-y.age );
+    console.log("o2: ", o2);
+
+    //edit person
+    const p2 = persons.find(x => x.id==2);
+    p2.age = 21;
+
+    //add one year to all persons.age
+    persons.forEach(person => person.age +=1);
+    console.log("persons plus one year: ", persons);
+
+    //Create new arrays--------------------------------------------------------------
+    //filter, map, concat, slice, spread operator as concat
+    //reduce
+
+    //filter only older persons
+    const oldPersons = persons.filter(p => p.age>26);
+    console.log("oldPersons: ", oldPersons);
+
+    //............................................
+    //add 10 years to all persons.age, Option 1: atributes added manually
+    // !!! p => ({})    This brackets necessary
+    const olderPersons1 = persons.map(p => (
+        {id: p.id, fName: p.fName, lName: p.lName, age1: p.age+10}
+    ));
+    console.log("olderPersons1: ", olderPersons1);
+
+    //rewritten in different way
+    const olderPersons2 = persons.map(p => {
+        return {id: p.id, fName: p.fName, lName: p.lName, age: p.age+10};
+    });
+    console.log("olderPersons2: ", olderPersons2);
+    //..........................................
+    //add 10 years to all persons.age. Option 2: all atributes added automaticaly
+    const olderPersons3 = persons.map(p => (
+        {
+        ...p,
+        age: p.age+10
+        }
+    ));
+    console.log("olderPersons3: ", olderPersons3);
+
+    //rewritten in different way
+    const olderPersons4 = persons.map(p => {
+        return {
+        ...p,
+        age: p.age+10
+        }
+    });
+    console.log("olderPersons4: ", olderPersons4);
+    //.........................................
+
+    //map on single array - just for comparison with map on collection
+    const arr1 = [1,2,3,4];
+    const arr2 = arr1.map(x => x+10);
+    console.log("map on single array: ", arr2);
+
+    //Concat two arrays. Option 1
+    const allPersons1 = persons.concat(newPersons);
+    console.log("allPersons1: ", allPersons1);
+
+    //Concat two arrays. Option 2
+    const allPersons2 = [...persons, ...newPersons]
+    console.log("allPersons2: ", allPersons2);
+
+    //Array with persons: 3, 4
+    const partPersons = persons.slice(2,4);
+    console.log("partPersons: ", partPersons);
+
+    //Return scalar value--------------------------------------------------------------------
+    //join, reduce, Math.max
+
+    //calculate total age
+    const totalAge = persons.reduce( (total, person) => total + person.age, 0);
+    console.log("totalAge: ", totalAge);
+
+    //maximum of persons.age, first option
+    //const c3 = Math.max(...o.age);    //Toto nejde
+    const maxAge1 = persons.reduce( (maxAge, person) => Math.max(maxAge, person.age), 0);
+    console.log("maxAge1: ", maxAge1);
+
+    //maximum of persons.age, second option
+    const ages = persons.map(x => x.age);
+    const maxAge2 = Math.max(...ages);
+    console.log("maxAge2: ", maxAge2);
+
+    //join fNames
+    const fNames = persons.map(p => p.fName).join();
+    console.log("join fNames: ", fNames);
+
+    //Return true/false--------------------------------------------------------------------
+    //some, every: on array of objects
+    //includes: on array of primitive values
+    //Array.isArray
+
+    //test: some()
+    const t1 = persons.some(p => p.age>30);
+    console.log("test some: ", t1);
+
+    //test: every()
+    const t2 = persons.every(p => p.age>30);
+    console.log("test every: ", t2);
+
+    //includes can be used only on array of primitive value:
+    const arr3 = persons.map(p => p.age);
+    const t3 = arr3.includes(26);
+    //const t3 = persons.map(p => p.age).includes(26);    //Two rows above in one step.
+    console.log("test include: ", t3);
+
+    //test if variable is type: array
+    const t4 = Array.isArray(persons);
+    console.log("test isArray: ", t4);
+</script>
