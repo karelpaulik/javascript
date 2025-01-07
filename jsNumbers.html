@@ -1,0 +1,56 @@
+<script>
+    let x;
+    
+    //both number assignment: 15
+    x=15;   //number defined as decimal
+    x=0xf;  //number defined as hexadecimal
+
+    //number conversion-------------------------------------
+    //radix: Must be an integer between 2 and 36.
+    //radix: 2 - binary, 8 - octal, 16 - hexadecimal
+
+    //conversion methods:
+    //number.toString(radix)
+    //parseInt(string, radix)
+    //parseFloat(string)
+    //number.toFixed(x)     //zaokrouhlování     //x - number of decimal, default = 0
+
+    //decimal to bin/oct/hex
+    //number.toString(radix)      
+    (15).toString(16);
+
+    //bin/oct/hex to decimal
+    //parseInt(string, radix)     
+    parseInt('1111', 2);
+
+    //Conversion - examples----------------------------------
+    //decimal to hex
+    x=15;
+    const a = (x).toString(16);
+    console.log("dec (10) to hex: ", a);
+
+    //decimal to binary
+    x=15;
+    const c = (x).toString(2);
+    console.log("dec (10) to bin: ", c);
+
+    //hex to decimal
+    x='f';
+    const b = parseInt(x, 16);
+    console.log("hex ('f') to dec: ", b);
+
+    //bin to decimal
+    x='1111';
+    const d = parseInt(x, 2);
+    console.log("bin ('1111') to dec: ", d);
+
+    //Number rounding----------------------------------------
+    let num=5.56789;
+
+    let n1 = num.toFixed();
+    console.log("round number 5.56789: ", n1);
+
+    let n2 = num.toFixed(2);
+    console.log("round number 5.56789 to two desimal places: ", n2);
+
+</script>
