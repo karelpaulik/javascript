@@ -1,0 +1,47 @@
+<script>
+    //undefined: deklarovaná proměnná, které zatím nebyla přiřazena hodnota
+    //null: přiřazeno proměnné
+    //"": prázdný řetězec (pouze u dat. typu string)
+
+    let a;
+    console.log(a);         //undefined
+    console.log(typeof(a)); //undefined
+
+    let b = null;
+    console.log(b);         //null
+    console.log(typeof(b)); //object
+
+    let c = "";
+    console.log(c);         //
+    console.log(typeof(c)); //string
+
+    let d = 0;
+    console.log(d);         //0
+    console.log(typeof(d)); //number
+    
+    let e = {fName: "Petr", age: 10};
+    console.log(e);         //{fName: 'Petr', age: 10}
+    console.log(typeof(e)); //object      
+
+    //Vue (Nuxt)-----------------------------------------------------------
+    //Důležité je rozlišování mezi null/empty string u deklarace objektu.
+    //number: null vs. 0: zde je jasný rozdíl
+    //string: null vs "": zde velice ošemetné. Používat "".
+
+    //NUTNO ZVÁŽIT:
+    //Ohledně čísla je jednoduché rozlišení mezi null (smaže se hodnota) a 0 (zadáno 0). 
+    //Ohledně stringu: uživatel může pouze smazat string, ale nemůže zadat, jestli to je null nebo prázdný string.
+
+    const fd = reactive({
+        fName: '',          //string, zde nepoužít null
+        lName: '',
+        age: null,          //number - zde je null OK
+        richText: '',
+        isActive: false,
+        city: [],
+        prefColor: '',
+        prefShape: '',
+        file: null
+    })
+
+</script>
