@@ -1,0 +1,22 @@
+<script>
+    class Car {
+        constructor(name, year) {
+            this.name=name,
+            this.year=year
+        }
+        carAge() {
+            return "Car is age: " + this.year;
+        }
+        logCarAge() {
+            console.log("Car age is: " + this.year);
+        }
+    }
+
+    const car1 = new Car("škoda octavia", 2011);
+    const car2 = new Car("Ford Galaxy", 2014)
+
+    console.log(car1.name, car1.year);
+    console.log(car1.carAge());
+    car1.logCarAge();
+
+</script>
