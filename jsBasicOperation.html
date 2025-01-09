@@ -1,0 +1,17 @@
+<script>
+    //základní operace: +,-,*,/
+
+    //operace +
+    //+: má dva významy: sečítání čísel, concatenate řetězců
+    //+: pokud sečtu číslo se stringem, výsledek bude string, !!! ale pozor na pořadí
+    //operace se provádí z leva do prava
+    let f = 10 + 20 + "a";
+    console.log(f);     //30a
+
+    let g = "a" + 10 + 20;
+    console.log(g);     //a1020
+    
+    //ostatní operace: -,*,/
+    let h = 10 - "a";
+    console.log(h);     //NaN (not a number)
+</script>
