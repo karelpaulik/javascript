@@ -1,0 +1,28 @@
+Structure:
+.........
+index.html
+scripts/script.js
+
+<!-- index.html-------------------------------------------------- -->
+<button id="btnPrint" onclick="window.print()">Print this page.</button>
+<div id="elem1"></div>
+
+<!-- external script -->
+<script src="./scripts/script.js"></script>
+
+<!-- internal script, can be used in head/body -->
+<script>
+    fce1()
+    document.getElementById("elem1").innerHTML=fce2() ;
+</script>
+
+<!-- scripts/script.js , here is not <script></script> ---------- -->
+console.log("Log from external script.js file.");
+
+function fce1() {
+    console.log("Log from f1 function form extranal js file.");
+}
+
+function fce2() {
+    return 100
+}
