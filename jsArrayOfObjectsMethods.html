@@ -71,6 +71,19 @@
     const p = persons.filter(x => /el$/.test(x.fName));        //všechny osoby kde "fName" končí na "el";
     console.log(p);
 
+    //look for in all atributes:
+    //Use: Object.values()
+        const persons = [
+        {id: 1, fName: "Petr", lName: "Pavel", age: 25},
+        {id: 2, fName: "Pavel", lName: "Starý", age: 20},
+        {id: 3, fName: "Karel", lName: "Kaláb", age: 30},
+        {id: 4, fName: "Jiří", lName: "Daněk", age: 35},
+    ];
+    const p1 = persons.filter(person =>
+        Object.values(person).some(value => value === "Pavel")    //hledá ve všech atributech, jestli některý nemá hodnotu "Pavel"
+    );
+    console.log(p1);
+
     //............................................
     //add 10 years to all persons.age, Option 1: atributes added manually
     // !!! p => ({})    This brackets necessary
