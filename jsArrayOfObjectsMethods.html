@@ -66,6 +66,11 @@
     const oldPersons = persons.filter(p => p.age>26);
     console.log("oldPersons: ", oldPersons);
 
+    //filter with wildcards
+    //For this case in necessary to use Regexp:
+    const p = persons.filter(x => /el$/.test(x.fName));        //všechny osoby kde "fName" končí na "el";
+    console.log(p);
+
     //............................................
     //add 10 years to all persons.age, Option 1: atributes added manually
     // !!! p => ({})    This brackets necessary
