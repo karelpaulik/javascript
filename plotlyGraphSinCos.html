@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sine Wave with Plotly</title>
+  <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+</head>
+<body>
+  <div id="sineGraph" style="width: 800px; height: 400px;"></div>
+  <script>
+    // Generate sine wave data
+    const xValues = [];
+    const sinValues = [];
+    const cosValues = [];
+    for (let t = 0; t <= 2 * Math.PI; t += 0.1) {
+      xValues.push(t);
+      sinValues.push(Math.sin(t));
+      cosValues.push(Math.cos(t));
+    }
+
+    // Define the tracees
+    const sinTrace = {
+      x: xValues,
+      y: sinValues,
+      mode: 'lines',
+      line: { color: 'blue' },
+      name: 'Sin Wave'
+    };
+
+    const cosTrace = {
+      x: xValues,
+      y: cosValues,
+      mode: 'lines',
+      line: { color: 'red' },
+      name: 'Cos Wave'
+    };
+
+    // Define the layout
+    const layout = {
+      title: 'Sin and Cos Wave',
+      xaxis: { title: 'X (radians)' },
+      yaxis: { title: 'Y (sin(x)), (cos(x))' },
+      margin: { t: 50, r: 20, b: 50, l: 50 } //t,r,b,l: top, right, bottom, left (because of labels)
+    };
+
+    // Render the plot
+    Plotly.newPlot('sineGraph', [sinTrace, cosTrace], layout);
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sine Wave</title>
+  <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+</head>
+<body>
+  <div id="graph" style="width: 800px; height: 400px;"></div>
+  <script>
+    const x = [];
+    for (let t =0; t< 2*Math.PI; t+=0.1) {x.push(t)};
+    const y = x.map(Math.sin); // Compute y values as sin(x)
+
+    //nebo např.
+    // const x = [];
+    // const y = [];
+    // for (let t = 0; t <= 2 * Math.PI; t += 0.1) {
+    //   x.push(t);
+    //   y.push(Math.sin(t));
+    // }
+
+    Plotly.newPlot('graph', [{ x, y, mode: 'lines' }], { title: 'Sine Wave' });
+  </script>
+</body>
+</html>
