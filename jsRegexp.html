@@ -1,0 +1,79 @@
+<script>
+    //Definice------------------------------------------------------
+    // xx - search pattern
+    // /xx/ - regular expression
+    // i - modifiers (case insensitive)
+    let pattern = /aa/i;
+
+    /^n/  začíná na "n"
+    /n$/  končí na "n"
+    /./   libovolný znak
+    /../  libovolné 2 znaky
+    /.*/  0-∞ libov. znaků
+    /.?/  0-1 libov. znaků
+    /.+/  1-∞ libov. znaků
+    /\d/  číslice
+    /\s/  white space (mezera, tabulátor, ...)
+    /[abc]/   jakýkoli znak v závorkách
+    /[a-d]/   a,b,c,d
+    /[0-5]/   0-5
+    /(reg|green)/ "red", "green"  např. pro: "re, green, red, green, gren, gr, blue, yellow"
+
+    //modifiers
+    //.........
+    i   case insensitive
+    g   global
+
+    //quantifiers
+    //..........
+    n+
+    n*
+    n?
+
+    //např.
+    /^aa.*bb$/    začíná na "aa", pak je cokoli kromě white space, končí na "bb"
+    /^aa...bb$/    začíná na "aa", pak jsou 3 nějaké znaky, končí na "bb"
+
+    //Použití----------------------------------------------------------
+    //1. String method: search, match, replace
+    text.search(/xx/);              //vrací první nalezenou pozici  //modifiers "g" zde nemá význam //pokud nenajde vrací: -1
+    text.match(/xx/);               //vrací viz example
+    text.match(/xx/g);              //vrací pole výskytů
+    text.replace(/xx/, "za co");    //nahradí první výskyt
+    text.replace(/xx/g, "za co");   //nahradí všechny výskyty
+
+    //Příklady
+    "xxaabbaadd".search(/aa/);  //2 typeof=number
+    "xxaabbaadd".search(/mm/);  //-1 typeof=number
+    "xxaabbaadd".match(/aa/);   //['aa', index: 2, input: 'xxaabbaadd', groups: undefined]
+    "xxaabbaadd".match(/aa/g);  //['aa', 'aa']
+    "xxaabbaadd".replace(/aa/, "mm");  //'xxmmbbaadd'
+    "xxaabbaadd".replace(/aa/g, "mm");  //'xxmmbbmmdd'
+
+    //2. Regexp method: text, exec
+    //test - velice důležitý při hledání, při použití zástupných znaků
+    /aa/.test("Nějaký string");    //vrací: true/false
+    /aa/.exec("Nějaký string");    //vrací viz příklad
+
+    //Příklady
+    /aa/.exec("xxaabbaadd");    //true
+    /cc/.exec("xxaabbaadd");    //false
+    /aa/.exec("xxaabbaadd");    //['aa', index: 2, input: 'xxaaxx', groups: undefined]
+
+    //Hledání v tabulkách - příklad: p2------------------------------------
+    const persons = [
+        {id: 1, fName: "Petr", lName: "Pavel", age: 25},
+        {id: 2, fName: "Pavel", lName: "Starý", age: 20},
+        {id: 3, fName: "Karel", lName: "Kaláb", age: 30},
+        {id: 4, fName: "Jiří", lName: "Daněk", age: 35},
+    ];
+
+    const p1 = persons.filter(p => p.fName == "Pavel");
+
+    const p2 = persons.filter(p => /el$/.test(p.fName)); //Jména končící na "el"
+
+    const p3 = persons.filter(p =>
+        Object.values(p).some(value => value === "Pavel")    //hledá ve všech atributech, jestli některý nemá hodnotu "Pavel"
+    );
+
+</script>
