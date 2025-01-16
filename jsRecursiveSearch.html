@@ -1,0 +1,70 @@
+<script>
+    // variable can by defined: either as array or as object
+    // created by the help of Chatgpt
+
+    // 1. variable as array
+    const persons = [
+        {id: 1, fName: "Petr", lName: "Pavel", age: 25, job: {company: "JULI", pos: "IT", addresses: [
+            {city: "Moravany", street: "Modricka"},
+            {city: "Putian", street: "Modricka"}
+        ]}},
+        {id: 2, fName: "Pavel", lName: "Starý", age: 20, adresses: [
+            {id: 1, ulice: "Masaricka"},
+            {id: 2, ulice: "Modricka"},
+            {id: 3, ulice: "Masaricka"},
+            {id: 4, ulice: "Modricka"},
+        ]},
+        {id: 3, fName: "Karel", lName: "Kaláb", age: 30},
+        {id: 4, fName: "Jiří", lName: "Daněk", age: 35, a: {city: "Putian", street: "Modricka"}},
+    ];
+
+    // variable as object
+    const team = { persons:  [
+        {id: 1, fName: "Petr", lName: "Pavel", age: 25, job: {company: "JULI", pos: "IT", addresses: [
+            {city: "Moravany", street: "Modricka"},
+            {city: "Putian", street: "Modricka"}
+        ]}},
+        {id: 2, fName: "Pavel", lName: "Starý", age: 20, adresses: [
+            {id: 1, ulice: "Krenova"},
+            {id: 2, ulice: "Modricka"},
+            {id: 3, ulice: "Olomoucka"},
+            {id: 4, ulice: "Modricka"},
+        ]},
+        {id: 3, fName: "Karel", lName: "Kaláb", age: 30},
+        {id: 4, fName: "Jiří", lName: "Daněk", age: 35, a: {city: "Putian", street: "Modricka"}},
+    ]};
+
+    function findValuePathsInInput(input, targetValue, rootName = 'root') {
+        function findValuePaths(obj, currentPath = []) {
+            let paths = [];
+
+            if (typeof obj !== 'object' || obj === null) {  //"||" = OR. expresiion1 || expression2
+                if (obj === targetValue) {
+                    paths.push(currentPath.join('.'));
+                }
+                return paths;
+            }
+
+            for (const key in obj) {
+                // Append array index or object property correctly
+                const newPath = Array.isArray(obj)
+                    ? [...currentPath.slice(0, -1), `${currentPath[currentPath.length - 1]}[${key}]`]
+                    : [...currentPath, key];
+                paths = paths.concat(findValuePaths(obj[key], newPath));
+            }
+
+            return paths;
+        }
+
+        // Add the root name as the initial path element
+        return findValuePaths(input, [rootName]);
+    }
+
+    // Call the function with the `persons` array as input, the target value "Modricka", and the root name "persons"
+    const resultPaths1 = findValuePathsInInput(persons, "Modricka", 'persons');
+    const resultPaths2 = findValuePathsInInput(team, "Modricka", 'team');
+
+    console.log(resultPaths1.join('\n'));
+    console.log(resultPaths2.join('\n'));
+
+</script>
