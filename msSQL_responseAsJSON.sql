@@ -1,8 +1,13 @@
-FOR JSON PATH vs FOR JSON AUTO
-PATH - more control, more work
-AUTO - simpler
+Return response from MS-SQL server as JSON
+--///////////////////////////////////////////////////////////
+Keyword: FOR JSON PATH vs FOR JSON AUTO
+FOR JSON PATH - more control, more work
+FOR JSON AUTO - simpler
 
-Note - ROOT (for PATH and AUTO as Well): Example: FOR JSON AUTO, ROOT('root_object')
+How to add root object
+......................
+By using: ROOT (for PATH and AUTO as Well): 
+Example: FOR JSON AUTO, ROOT('root_object')
 --///////////////////////////////////////////////////////////
 FOR JSON PATH
 
@@ -24,7 +29,7 @@ FOR JSON PATH;
     }
   }
 ]
---//////////////////////////////////////////////////////////////////////
+--////////////////////////////////////////////////////////////
 SELECT 
     id_kalk,
     part_nr,
