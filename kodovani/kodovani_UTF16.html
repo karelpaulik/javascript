@@ -1,0 +1,84 @@
+<script>
+    //-------------------------------------------------------------------------------------
+    //char to code
+    console.log("a".charCodeAt(0));               //return: 97
+    //code to char
+    console.log(String.fromCharCode(97,98,99));   //return string: abc
+
+    //log 0-127 codes
+    const a1 = []
+    for(let i=0; i<127; i++) {
+        console.log(i, String.fromCharCode(i));
+    }
+
+    //array: 0-127
+    const a2 = []
+    for(let i=0; i<127; i++) {
+        a2.push(i);
+    }
+
+    //log chars from codes array
+    console.log(String.fromCharCode(...a2));
+
+    //-------------------------------------------------------------------------------------
+    //Seznam metod: 
+    //charCodeAt, fromCharCode, codePointAt, fromCodePoint
+
+    //Základní dvě metody:
+    //"A".charCodeAt(0)        char to code
+    //String.fromCharCode(65)   chode to char
+
+    //Metody pro převod znaku na číselný kód Unicode
+    //Metody objektu String, které vrací číselný kód Unicode znaku na daném indexu.
+    //charCodeAt()  //starší
+    //codePointAt() //novější
+    // ----Rozdíl mezi charCodeAt() a codePointAt() v JavaScriptu
+    // Obě metody vrací číselnou hodnotu Unicode znaku, ale rozdíl je v tom, jak pracují se znaky mimo základní rozsah Unicode (U+FFFF a vyšší, např. emoji).
+    // ----charCodeAt(index)
+    // Vrací 16bitovou kódovou jednotku (UTF-16).
+    // Pokud je znak mimo rozsah U+FFFF (např. emoji), vrátí pouze první část surrogate pair (hodnotu mezi 0xD800 – 0xDFFF).
+    // Neumí správně vrátit celý Unicode kód pro znaky jako emoji.
+    // ----codePointAt(index)
+    // Vrací celý Unicode kódový bod (32bit).
+    // Funguje správně pro všechny znaky, včetně těch nad U+FFFF (např. emoji).
+
+    const text = "A😃B";
+
+    console.log(text.charCodeAt(0));  // 65  → "A"
+    console.log(text.charCodeAt(1));  // 55357 (část emoji 😃)
+    console.log(text.charCodeAt(2));  // 56835 (druhá část emoji 😃)
+    console.log(text.charCodeAt(3));  // 66  → "B"
+
+    console.log(text.codePointAt(1));  // 128515 (😃 = U+1F603)
+
+
+    //Dvě metody pro převod číselných kódů Unicode zpět na znaky:
+    //String.fromCharCode   //starší
+    //String.fromCodePoint  //novější
+
+    // ----String.fromCharCode()
+    // Převádí 16bitové kódové jednotky (UTF-16) na znaky.
+    // Funguje pouze pro kódy v rozsahu 0 až 65535 (U+0000 až U+FFFF).
+    // Neumí správně pracovat s kódy nad U+FFFF (např. emoji nebo speciální znaky).
+    // ----String.fromCodePoint() (novější, doporučená metoda)
+    // Převádí celé kódové body Unicode (0 až 1,114,111 → U+0000 až U+10FFFF).
+    // Funguje správně i pro znaky nad U+FFFF (např. emoji, čínské znaky).
+
+    console.log(String.fromCharCode(65));   // "A"
+    console.log(String.fromCharCode(97, 98, 99));  // "abc"
+    console.log(String.fromCharCode(0x1F600));  // "" (špatně! 😃)
+
+    console.log(String.fromCodePoint(65));   // "A"
+    console.log(String.fromCodePoint(0x1F600));  // "😃" (správně!)
+    console.log(String.fromCodePoint(128514));  // "😂"
+    //-------------------------------------------------------------------------------------
+    //JavaScript interně používá UTF-16 k reprezentaci znaků, protože je založen na Unicode. To znamená:
+
+    //Každý znak je uložen jako 16bitová hodnota (2 bajty).
+    //Znaky mimo základní sadu Unicode (nad U+FFFF, např. některé emoji nebo čínské znaky) jsou reprezentovány jako dvojice kódových jednotek (surrogate pairs).
+    //-------------------------------------------------------------------------------------
+
+</script>
+
+
+

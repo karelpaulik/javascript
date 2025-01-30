@@ -1,0 +1,22 @@
+<script>
+    //Zakódování UTF-8
+    const encoder = new TextEncoder();
+    const encoded = encoder.encode("A😊B");
+
+    console.log(encoded);  
+    // Uint8Array(6) [65, 240, 159, 152, 138, 66]
+
+
+    //Dekódování UTF-8
+    // 1️⃣ Vytvoření bajtového pole (UTF-8 kód pro "Hello 😊")
+    const encoded1 = new Uint8Array([72, 101, 108, 108, 111, 32, 240, 159, 152, 138]);
+
+    const decoder = new TextDecoder();
+    const decodedText = decoder.decode(encoded1);
+
+    console.log(decodedText);  // "Hello 😊"
+
+</script>
+
+
+
