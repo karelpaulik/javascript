@@ -12,6 +12,8 @@ Odstavec textu. Zde se nachází *jedna zvězdička* a **dvě hvězdičky** a **
 - asdf asdf
 - asdfasdf
 
+  ***
+
 1. dsfgsdfg
 2. sdfhdfghsdf
 3. dsfghsdfg
@@ -28,3 +30,10 @@ Odstavec textu. Zde se nachází *jedna zvězdička* a **dvě hvězdičky** a **
 > - Profits were higher than ever.
 >
 >  *Everything* is going according to **plan**.
+
+![Tux, the Linux mascot](tucnak.png)
+
+|Jméno|Příjmení|
+|---|---|
+|Petr|Novák|
+|Pavel|Starý|
