@@ -37,5 +37,4 @@ Odstavec textu. Zde se nachází *jedna zvězdička* a **dvě hvězdičky** a **
 |Jméno|Příjmení|
 |---|---|
 |Petr|Novák|
-|Pavel|Starý|
 |Karel|Paulík|
