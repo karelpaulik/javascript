@@ -35,6 +35,15 @@ Odstavec textu. Zde se nachází *jedna zvězdička* a **dvě hvězdičky** a **
 ![Tux, the Linux mascot](tucnak.png)
 
 |Jméno|Příjmení|
-|---|---|
+|:---:|:----:|
 |Petr|Novák|
 |Karel|Paulík|
+
+| Syntax      | Description | Test Text     |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
+
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
