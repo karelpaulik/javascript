@@ -162,6 +162,7 @@ Máš konkrétní případ, kde si nejsi jistý, co použít? 🚀
 
 ---
 
+Funkce konstruktor - Každá instance má vlastní kopii metod. Vysvětlení:
 Skvělá otázka! Pojďme si to vysvětlit detailně. 😊  
 
 ### **Problém s metodami v konstruktoru**  
