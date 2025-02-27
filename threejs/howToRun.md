@@ -1,5 +1,7 @@
 # Three.js - Spuštění pod npm
 
+Existují dva způsoby jak Three.js spustit. Oba dva jsou si velice podobné.
+
 ## 1. Instalace a použití dle: Three.js 
 
 ### Threejs soubory:
@@ -29,7 +31,7 @@ npx vite build  (vytvoří adresář: dist)
 ### Production run
 ```
 cd dist
-npx serve
+npx serve  (serve je lokální stat. server, asi nevhodný pro produkci)
 ```
 
 ### Pozn. Pokud bych chtěl používat "npm run ..." příkazy:
@@ -75,7 +77,7 @@ npm run dev		(development run)
 ```
 npm run build	(build for production)
 cd dist
-npx serve
+npx serve  (serve je lokální stat. server, asi nevhodný pro produkci)
 ```
 
 ---
