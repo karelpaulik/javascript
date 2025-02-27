@@ -48,7 +48,7 @@ Přidáno do package.json:
 
 ```
 npm init -y
-npm i vite    (takto to funguje, ale myslím, že vite patří do devDependencies a tam to taky určitě funguje)
+npm i vite    (takto to funguje, ale vite patří do devDependencies: npm i -D vite, nebo: npm i --save-dev vite)
 npm i three
 ```
 
