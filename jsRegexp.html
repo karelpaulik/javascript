@@ -42,6 +42,10 @@
     text.match(/xx/g);              //vrací pole výskytů
     text.replace(/xx/, "za co");    //nahradí první výskyt
     text.replace(/xx/g, "za co");   //nahradí všechny výskyty
+    text.split(/xx/);               //rozdělí podle regexp spliteru
+    
+    let text = "jablko,hruška;banán";
+console.log(text.split(/[,;]/)); // ["jablko", "hruška", "banán"]
 
     //Příklady
     "xxaabbaadd".search(/aa/);  //2 typeof=number
@@ -50,6 +54,7 @@
     "xxaabbaadd".match(/aa/g);  //['aa', 'aa']
     "xxaabbaadd".replace(/aa/, "mm");  //'xxmmbbaadd'
     "xxaabbaadd".replace(/aa/g, "mm");  //'xxmmbbmmdd'
+    "jablko,hruška;banán".split(/[,;]/)    //['jablko', 'hruška', 'banán']
 
     //2. Regexp method: text, exec
     //test - velice důležitý při hledání, při použití zástupných znaků
