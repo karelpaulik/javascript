@@ -6,7 +6,7 @@ npm init --yes
 
 **package.json**
 ```json
-//Přidat:
+//Přidat (Abych mohl používat export/import. Místo require):
 "type": "module"
 ```
 
@@ -35,7 +35,7 @@ npx tsc --version
 
 **package.json**
 ```json
-//Přidat:
+//Přidat (Jinak kompilace hlásí chybu):
 "type": "module"
 ```
 
