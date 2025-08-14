@@ -10,7 +10,7 @@ npm init --yes
 "type": "module"
 ```
 
-**objects/books.js**
+**data/books.js**
 ```javascript
 export const books=[
     {id: 1, title: "Konstr. tabulky", year: 2020},
@@ -19,7 +19,7 @@ export const books=[
 ```
 **index.js**
 ```javascript
-import { books } from "./objects/books.js";
+import { books } from "./data/books.js";
 
 console.log("books: ", books);
 ```
@@ -48,7 +48,7 @@ export interface Book {
 }
 ```
 
-**objects/books.ts**
+**data/books.ts**
 ```typescript
 import type { Book } from "@root/types/Book.ts";  //Aby fungoval @root, nutno mít nastaveno "paths" v tsconfig.json
 
@@ -60,7 +60,7 @@ export const books: Book[]=[
 
 **index.ts**
 ```typescrpit
-import { books } from "./objects/books.js";
+import { books } from "./data/books.js";
 
 console.log("books: ", books);
 ```
