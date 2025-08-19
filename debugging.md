@@ -44,3 +44,75 @@ Debug panel:
 ## Vizuální vodítka: workspace vs. overrides
 - Pokud používáte **Workspace**, objeví se vedle názvu souboru malá **zelená tečka**. To znamená, že soubor je propojen s vaším lokálním projektem a všechny změny se ukládají přímo na disk.
 
+# Debuging v VSCODE
+Např. kód:
+
+index.html
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sčítač</title>
+        <script src="script.js"></script>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <p>Číslo 1</p>
+        <input id="a" type="number">
+
+        <p>Číslo 2</p>
+        <input id="b" type="number"> <br /> <br />
+
+        <input class="button" type="button" onclick="add()" value="Sečíst">
+        <p id="result">0</p>
+    </body>
+</html>
+```
+
+script.js
+```javascript
+function add() {
+    let number1 = document.getElementById("a").value;
+    let number2 = document.getElementById("b").value;
+
+    document.getElementById("result").innerHTML = parseInt(number1) + parseInt(number2);
+}
+```
+
+- Run - Start Debuging
+- Vybrat: Web App (Chrome)
+- Tímto se vytvoří: .vscode/launch.json
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
+```
+Upravit na:
+- Upravuje se: **url** -> **file**
+- Cesta uvnitř **file** je s dvojitými uvozovkami!!!. Jedna uvozovka značí escapování.
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "file": "D:\\path_to_file\\index.html",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
+```
+- **Start Debugging (F5)**
+
