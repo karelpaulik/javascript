@@ -45,6 +45,7 @@ Debug panel:
 - Pokud používáte **Workspace**, objeví se vedle názvu souboru malá **zelená tečka**. To znamená, že soubor je propojen s vaším lokálním projektem a všechny změny se ukládají přímo na disk.
 
 # Debuging v VSCODE
+## Javascript html + script
 Např. kód:
 
 index.html
@@ -115,4 +116,38 @@ Upravit na:
 }
 ```
 - **Start Debugging (F5)**
+- Nyní můžeme přidávat breakpointy a debugovat.
 
+## node.js - zde je několik způsobů.
+### JavaScript Debug Terminal
+- Nejjednodušší
+- Otevřete panel ladění: V levém menu VS Code klikněte na ikonu Run and Debug (ikona s broukem a přehrávacím tlačítkem).
+- Tlačítko: JavaScript Debug Terminal (tím se spustí nový terminál, kde je již připojený debugger)
+- Pokud nyní: **node index.js**
+- Tak pokud je někde v kód příkaz **debuger;** kód se na něm zastaví.
+
+### Vytvoření **launch.json**
+- Otevřete panel ladění: V levém menu VS Code klikněte na ikonu Run and Debug (ikona s broukem a přehrávacím tlačítkem).
+- create a launch.json file
+- Select debuger: Node.js
+- Vybrat: {} Node.js: "Launch Program"
+- Upravit soubor:
+- Zejména nastavit atribut: **program**
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\index.js"
+        }
+    ]
+}
+```
+- Pozn. Tímto se vytvoří: *.vscode/launch.json*
+- **Start Debugging (F5)** Pokud bude někde přikaz **debugger;** tak se na něm kód zastaví.
