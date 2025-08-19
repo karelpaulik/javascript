@@ -3,8 +3,8 @@
 console.clear()
 console.log()
 console.table()
-console.time("add");	// Začíná měřit čas
-console.timeEnd("add");	// Končí měřit čas, a vypíše čas trvání.
+console.time("m1");	// Začíná měřit čas // m1 je identifikátor stopek. Stopek může být více.
+console.timeEnd("m1");	// Končí měřit čas, a vypíše čas trvání.
 ```
 
 Při klepnutí na proklikávací text (vpravo) se zobrazí, od kud chyba pochází
@@ -42,13 +42,14 @@ Debug panel:
 - **Overrides**	Obsah změny souborů se ukládá do nové lokace, aniž by se měnil originál souborů.
 
 ## Vizuální vodítka: workspace vs. overrides
-- Pokud používáte **Workspace**, objeví se vedle názvu souboru malá **zelená tečka**. To znamená, že soubor je propojen s vaším lokálním projektem a všechny změny se ukládají přímo na disk.
+- Pokud používáte **Workspace**, objeví se vedle názvu souboru malá **zelená tečka** 🟢. To znamená, že soubor je propojen s vaším lokálním projektem a všechny změny se ukládají přímo na disk.
+- Pokud používáte **Overrides**, objeví se vedle názvu souboru malá **fialová tečka** 🟣. To znamená, že prohlížeč používá vaši lokální, přepsanou verzi souboru místo té, která se stáhla ze serveru.
 
 # Debuging v VSCODE
-## Javascript html + script
+## Javascript *index.html + script.js*
 Např. kód:
 
-index.html
+*index.html*
 ```html
 <!DOCTYPE html>
 <html>
@@ -71,7 +72,7 @@ index.html
 </html>
 ```
 
-script.js
+*script.js*
 ```javascript
 function add() {
     let number1 = document.getElementById("a").value;
@@ -118,7 +119,7 @@ Upravit na:
 - **Start Debugging (F5)**
 - Nyní můžeme přidávat breakpointy a debugovat.
 
-## node.js - zde je několik způsobů.
+## Node.js - zde je několik způsobů.
 ### JavaScript Debug Terminal
 - Nejjednodušší
 - Otevřete panel ladění: V levém menu VS Code klikněte na ikonu Run and Debug (ikona s broukem a přehrávacím tlačítkem).
