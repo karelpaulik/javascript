@@ -33,7 +33,7 @@ Více možností:
 ## DEVTOOLS
 Debug panel:
 - Watch
-- Local: !!! velice důležité. Ze jsou vidět všechny lokální i globální proměnné
+- Local: 🔴 velice důležité. Ze jsou vidět všechny lokální i globální proměnné
 - Call Stack: zásobník
 
 ## Debuging - Sources
