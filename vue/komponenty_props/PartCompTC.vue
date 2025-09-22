@@ -1,13 +1,17 @@
 <template>
   <section>
     <h4>Part Component</h4>
-    <input type="text" v-model="props.prA" />
-    <input type="text" v-model="locB" />
-    <input type="text" v-model="locC" />
+    props.prA<input type="text" v-model="props.prA" />
+    locA<input type="text" v-model="locA" />
+    locB<input type="text" v-model="locB" />
+    locC<input type="text" v-model="locC" />
+
+    locE.e1<input type="text" v-model="locE.e1" />
+    locH.h1<input type="text" v-model="locH.h1" />
 
     <pre>{{ props }}</pre>
-    <pre>{{ locB }}</pre>
-    <pre>{{ locC }}</pre>
+    <pre>{{ locH }}</pre>
+
   </section>
 </template>
 
@@ -27,8 +31,9 @@ const props = defineProps<{
   prP: string[];
 }>();
 
-// props.prA                        // Prostá hodnota, která je reaktivní. Ale nemůžu předat do composable, který očekává ref.
-const locB = ref(props.prB);        // Pro editaci dat.
+//props.locA                        // Prostá hodnota, která je reaktivní. Ale nemůžu předat do composable, který očekává ref. Composable by obdrželo primitivní hodnotu.
+const locA = props.prA;             // locA již není reaktivní.
+const locB = ref(props.prB);        // Pro editaci dat. locB je reaktivní proměnná.
 const locC = toRef(props, 'prC');   // Reaktivní proměnná, kterou můžu předat do composable očekávající ref.
                                     // "props.prA" vs. "toRef(props, 'prA')": toto jsou dvě různé hodnoty.
 
@@ -36,13 +41,13 @@ const locE = ref(props.prE);        // Toto vytváří reaktivní proměnnou, kt
 const locF = toRef(props, 'prF');   // Toto by nemělo být použito pro editaci. "toRef(props, 'prF')" stejné jako "props.prE"
 
 const locH = ref({...props.prH});   // Vytvoří novou reaktivní proměnnou, nezávislou na rodiči. Ideální pro změnu dat. Pro promítnutí do rodiče nutno použít "emit"
-const locI = toRef({...props, 'prI'});  // Nemá žádné praktické využití, nemá logiku.
+//const locI = toRef({...props, 'prI'});  // Nemá žádné praktické využití, nemá logiku.
 
 // Pozn. toRef má hlavně význam pro PRIMITIVNÍ HODNOTY. Pro objekty a pole význam nemá.
 // Pozor!!! Jiná syntaxe mezi: ref(props.prB) vs. toRef(props, 'prB')
 
 // Shrnutí: ref()
-// primit. hodnota: ref pro editaci dat
+// primit. hodnota: ref pro editaci dat, když změním rodiče, NEMĚNÍ se potomek. Do potomka se natahuje pouze init stav.
 // objekt/pole: ref({props.prE})  editace dat: měním i rodiče
 // objekt/pole: ref({...props.prE})  editace dat: měním pouze potomka
 
