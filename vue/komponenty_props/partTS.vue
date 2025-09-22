@@ -4,6 +4,8 @@
     <input type="text" v-model="prt.a" />
     <input type="text" v-model="prt.b" />
     <input type="text" v-model="prt.c" />
+    <input type="text" v-model="prt.e.e1" />
+    <input type="text" v-model="prt.h.h1" />
     <pre>{{ prt }}</pre>
 
     <PartCompTS
@@ -13,6 +15,9 @@
       :pr-d="prt.d"
       :pr-e="prt.e"
       :pr-f="prt.f"
+      :pr-g="prt.g"
+      :pr-h="prt.h"
+      :pr-i="prt.i"
       :pr-p="prt.p"
     />
   </section>
