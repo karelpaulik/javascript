@@ -2,6 +2,12 @@
 
 ## Nápověda
 ```
+git help <příkaz>
+git <příkaz> --help
+man git-<příkaz>
+
+Např.
+git help config
 ```
 
 ## Konfigurace
@@ -32,3 +38,29 @@ git config --global user.email johndoe@example.com
 
 git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -nosession"
 ```
+
+## Inicializace/klonování repozitáře
+```
+Inicializace:
+git init
+
+Klonování existujícího:
+git clone <url-repozitare>
+```
+
+## Sledování změn
+```
+git status	Zobrazí stav pracovního adresáře a staging area. Ukáže, které soubory jsou změněné, nesledované (untracked) nebo připravené k commitu.
+git add <soubor>	Přidá konkrétní soubor do staging area (připraví ho k commitu).
+git add .	Přidá všechny změněné a nesledované soubory v aktuálním adresáři a podadresářích do staging area.
+git diff	Zobrazí rozdíly mezi pracovním adresářem a staging area.
+git log  Zobrazí historii commitů
+git log --oneline
+```
+## Ukládání změn
+```
+git commit
+git commit -m "Popis commitu"
+```
+
+
