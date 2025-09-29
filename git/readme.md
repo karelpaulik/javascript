@@ -120,20 +120,31 @@ git push origin <nazev_vetve>	Nahraje (push) lokální commity na vzdálený rep
 git pull origin <nazev_vetve>	Stáhne (fetch a merge) a aplikuje změny z dálky do lokální větve.
 git fetch	Stáhne změny z dálky, ale neaplikuje je na lokální větev.
 ```
+**Zobrazení změn po: git fetch**
+
+Jakmile provedete příkaz **git fetch**, stáhnete nové commity do své lokální kopie vzdálené větve (např. do origin/main), aniž by se změnila vaše lokální pracovní větev.
+
+Tyto stažené změny můžete zobrazit několika způsoby, především pomocí příkazů **git log** a **git diff**.
+```
+git log
+git diff
+
+Porovnání s aktuální větví
+git log <lokalni_vetev>..origin/<nazev_vetve>
+# Např.: git log main..origin/main
+
+Zobrazení stažených větví (log)
+git log origin/<nazev_vetve>
+# Např.: git log origin/main
+```
+
+
 ### Rozdíl mezi git fetch a git pull
 ```
 git fetch	Stáhne commity ze vzdáleného repozitáře, ale neaplikuje je. Cíl změn:	Vzdálená sledovací větev (origin/main)	Když chcete vidět novinky na serveru, ale nechcete je zatím začlenit do své práce.
 git pull	Je zkratka pro git fetch následované git merge (sloučením). Cíl změn:	Lokální pracovní větev (main)	Když chcete okamžitě stáhnout a aplikovat (sloučit) vzdálené změny do vaší aktuální lokální větve.
 ```
 pull = fetch + merge
-
-# VSCODE
-## Sync Changes
-Příkaz "Sync Changes" (Synchronizovat změny) ve VS Code je zkratka, která kombinuje dva základní Git příkazy pro synchronizaci s vzdáleným repozitářem (origin):
-```
-git pull (nejprve stáhnout změny z dálky)
-git push (poté nahrát vaše lokální commity na dálku)
-```
 
 ## git remote show origin
 Příkaz **git remote show origi**n sice nevypisuje jen seznam větví, ale poskytuje komplexní přehled o vzdáleném repozitáři origin, včetně:
@@ -240,9 +251,134 @@ Vzdálená větev vám umožňuje sledovat, co se děje na serveru. Její název
 | **Účel** | Vývoj a práce s kódem. | Sledování a porovnávání se serverem. |
 
 
+# git push vs. git push origin <nazev_vetve>
 
+## 1\. `git push origin <nazev_vetve>` (Explicitní a vždy funguje) ✅
 
+Tento příkaz je **explicitní** a vždy funguje, protože Gitu **přímo říkáte, co a kam má nahrát**.
 
+  * **Co:** **Lokální větev** s názvem `<nazev_vetve>`.
+  * **Kam:** Vzdálený repozitář s názvem **`origin`**.
+  * **Použití:**
+      * Když nahráváte **nově vytvořenou větev**, která na vzdáleném repozitáři ještě neexistuje.
+      * Když chcete nahrát **jinou lokální větev**, než na které se právě nacházíte.
+      * Když chcete být **maximálně přesný** ohledně toho, co nahráváte.
 
+### První push nové větve
 
+Při prvním nahrávání nové větve musíte obvykle použít variantu, která nastaví sledování:
 
+```bash
+git push -u origin <nazev_vetve>
+# (-u je zkratka pro --set-upstream)
+```
+
+Tento příkaz nahraje větev a nastaví váš lokální repozitář tak, aby **příště** mohl používat zkrácený příkaz `git push`.
+
+-----
+
+## 2\. `git push` (Zkrácený a závislý na nastavení) 💡
+
+Tento zkrácený příkaz funguje, pouze pokud je **aktuální lokální větev** nastavená tak, aby sledovala (trackovala) konkrétní vzdálenou větev.
+
+  * **Co:** Git nahraje vaši **aktuální lokální větev**.
+  * **Kam:** Do **vzdálené větve, kterou lokální větev sleduje** (např. pokud lokální `feature-a` sleduje vzdálenou `origin/feature-a`).
+  * **Použití:**
+      * Po prvním push s nastavením sledování (`-u`).
+      * Když chcete rychle nahrát změny z větve, na které právě pracujete.
+
+### Kdy selže?
+
+Pokud vaše aktuální lokální větev nemá nastavenou žádnou vzdálenou sledovací větev (tj. neví, *kam* se má pushovat), příkaz **`git push`** selže a vyzve vás k použití delšího příkazu s argumentem `--set-upstream`.
+
+-----
+
+## Shrnutí rozdílů
+
+| Příkaz | Explicitní cíl? | Co se nahrává? | Kdy použít? |
+| :--- | :--- | :--- | :--- |
+| **`git push origin <nazev_vetve>`** | **Ano** | Konkrétní zadaná lokální větev. | **Kdykoliv,** pro nové nebo jiné větve. |
+| **`git push`** | **Ne** (je inferován) | Aktuální lokální větev. | Když je **nastaveno sledování** (upstream). |
+
+## Zjištění, která vzdálená větev se sledovaná
+
+### 1\. Použití `git status`
+
+Příkaz `git status` je nejužitečnější, protože vám okamžitě ukáže stav sledování pro aktuální větev, stejně jako počet commitů, o které se liší od vzdáleného repozitáře.
+
+```bash
+git status
+```
+
+### Příklad výstupu:
+
+Pokud je sledování nastaveno, uvidíte zprávu, která vypadá zhruba takto:
+
+```
+On branch main
+Your branch is up to date with 'origin/main'. 
+nothing to commit, working tree clean
+```
+
+nebo:
+
+```
+On branch feature/nova-funkce
+Your branch is ahead of 'origin/feature/nova-funkce' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+```
+
+Zde jasně vidíte, že aktuální lokální větev (`main` nebo `feature/nova-funkce`) sleduje vzdálenou větev **`origin/main`** nebo **`origin/feature/nova-funkce`**.
+
+## Origin
+**`origin`** je ve světě Gitu **standardní alias** (přezdívka) pro **vzdálený repozitář**, ze kterého jste projekt původně naklonoval/a (stáhl/a).
+
+Jednoduše řečeno, je to zkrácený název, který Git používá pro odkaz na server, kde žije "hlavní" kopie vašeho kódu (např. na GitHubu, GitLabu apod.).
+
+Jak zjistím origin:
+- git remote -v
+
+Příklad výstpu:
+```
+origin  https://github.com/uzivatel/muj-projekt.git (fetch)
+origin  https://github.com/uzivatel/muj-projekt.git (push)
+```
+
+## Detaily o `origin`
+
+### 1\. Alias, ne server
+
+`origin` není název serveru, ale **místní zástupce** (lokálně uložené jméno), který ukazuje na plnou URL adresu vašeho vzdáleného repozitáře.
+
+  * **Příklad:** Místo abyste neustále psali `git push https://github.com/muj-profil/muj-projekt.git main`, napíšete jen `git push origin main`.
+
+### 2\. Automatické nastavení
+
+Když použijete příkaz **`git clone <URL>`**, Git automaticky provede dvě věci:
+
+1.  Vytvoří lokální kopii repozitáře.
+2.  Nastaví alias **`origin`** tak, aby ukazoval na danou `<URL>`.
+
+### 3\. Vztah k větvím
+
+Jakmile je `origin` nastaven, používá se pro referenci na vzdálené větve, které jste už viděl/a:
+
+  * **`origin/main`**: Představuje stav větve `main` tak, jak je uložena na vzdáleném serveru (označovaném `origin`).
+
+### 4\. Změna názvu
+
+Název `origin` je sice standard, ale není povinný. Můžete přidat i další vzdálené repozitáře (např. z forků) pod jinými názvy, například **`upstream`**:
+
+```bash
+git remote add upstream <URL_hlavniho_repozitáře>
+```
+
+# VSCODE
+## Sync Changes
+Příkaz "Sync Changes" (Synchronizovat změny) ve VS Code je zkratka, která kombinuje dva základní Git příkazy pro synchronizaci s vzdáleným repozitářem (origin):
+```
+git pull (nejprve stáhnout změny z dálky)
+git push (poté nahrát vaše lokální commity na dálku)
+```
