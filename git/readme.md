@@ -63,4 +63,54 @@ git commit
 git commit -m "Popis commitu"
 ```
 
+## Větve
+```
+git branch	Vypíše všechny lokální větve a označí tu aktuální.
+git branch <nazev_vetve>	Vytvoří novou větev s daným názvem.
+git checkout <nazev_vetve>	Přepne se na existující větev.
+git checkout -b <nazev_vetve>	Vytvoří novou větev a okamžitě se na ni přepne.
+git merge <nazev_vetve>	Sloučí (merge) zadanou větev do aktuální větve.
+git branch -d <nazev_vetve>	Smaže lokální větev. (Jen pokud byla sloučena.)
 
+Výpis větví
+git branch    Výpis lok. větví
+git branch -r  Výpis vzdálených větví
+git branch -a  Výpis všech větví
+```
+**Pozn.** Merge znamená proveď merge do aktuální větve. Ne proveď merge větve, která je aktuální.
+
+Tzn. Před merge se většinou dává **git checkout main**
+
+### git remote show origin
+Příkaz **git remote show origi**n sice nevypisuje jen seznam větví, ale poskytuje komplexní přehled o vzdáleném repozitáři origin, včetně:
+- Seznamu vzdálených větví (Remote branches).
+- Které lokální větve sledují které vzdálené.
+- Jaké akce (jako je push a pull) Git provede pro každou větev.
+
+## Práce se vzdáleným repozitářem
+```
+git remote -v	Zobrazí seznam vzdálených repozitářů.
+git push origin <nazev_vetve>	Nahraje (push) lokální commity na vzdálený repozitář (např. origin je obvyklý název pro hlavní vzdálený server).
+git pull origin <nazev_vetve>	Stáhne (fetch a merge) a aplikuje změny z dálky do lokální větve.
+git fetch	Stáhne změny z dálky, ale neaplikuje je na lokální větev.
+```
+### Rozdíl mezi git fetch a git pull
+```
+git fetch	Stáhne commity ze vzdáleného repozitáře, ale neaplikuje je. Cíl změn:	Vzdálená sledovací větev (origin/main)	Když chcete vidět novinky na serveru, ale nechcete je zatím začlenit do své práce.
+git pull	Je zkratka pro git fetch následované git merge (sloučením). Cíl změn:	Lokální pracovní větev (main)	Když chcete okamžitě stáhnout a aplikovat (sloučit) vzdálené změny do vaší aktuální lokální větve.
+```
+pull = fetch + merge
+
+# VSCODE
+## Sync Changes
+Příkaz "Sync Changes" (Synchronizovat změny) ve VS Code je zkratka, která kombinuje dva základní Git příkazy pro synchronizaci s vzdáleným repozitářem (origin):
+```
+git pull (nejprve stáhnout změny z dálky)
+git push (poté nahrát vaše lokální commity na dálku)
+```
+
+## git remote show origin
+Příkaz **git remote show origi**n sice nevypisuje jen seznam větví, ale poskytuje komplexní přehled o vzdáleném repozitáři origin, včetně:
+- Seznamu vzdálených větví (Remote branches).
+- Které lokální větve sledují které vzdálené.
+- Jaké akce (jako je push a pull) Git provede pro každou větev.
