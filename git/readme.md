@@ -62,7 +62,12 @@ Zadat název repozitáře, Enter
 // Na lokálu:
 git clone <url-repozitare>
 ```
-
+**Mazání repozitáře na gitgub**
+- web github
+- výběr repozitáře
+- settings
+- Úplně dole: Danger zone
+- Delete this repository (vyzve k zadání hesla na github)
 
 
 ## Sledování změn
