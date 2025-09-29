@@ -70,8 +70,8 @@ HEAD^  Ukazatel na: Předchozí (předposlední) commit
 
 ## Ukládání změn
 ```
-git commit
-git commit -m "Popis commitu"
+git commit  Vyzve k napsání poznámky ke commitu.
+git commit -m "Popis commitu"  Provede commit, poznámka ke commitu je již v příkazu.
 git commit --amend  Nevytvoří nový commit, ale změny uloží do posledního existujícího commitu.
 ```
 
@@ -108,14 +108,14 @@ Tzn. Před merge se většinou dává **git checkout main**
 --ff-only
 ```
 
-1. Fast-Forward Merge (Rychlé Posunutí)
+1. Fast-Forward Merge (`git merge <nazev-vetve>`)
 
 * **Kdy nastává:** K Fast-Forward merge dojde, pokud **cílová větev** (např. `main`) od chvíle, kdy z ní byla **odbočena zdrojová větev** (např. `feature-x`), **neměla žádné nové commity**.
 * **Jak funguje:** Git pouze **posune ukazatel** cílové větve na poslední commit zdrojové větve.
 * **Historie:** **Nevytvoří se žádný nový merge commit.** Historie zůstává lineární a vypadá, jako by práce na větvi `feature-x` byla přímým pokračováním větve `main`. 
 * **Klíčová vlastnost:** Neukládá informaci o tom, že se jednalo o samostatnou větev, což může ztížit pochopení, kdy se daná sada změn vyvíjela odděleně.
 
-2. No-Fast-Forward Merge (`git merge --no-ff`) ⚠️
+2. No-Fast-Forward Merge (`git merge --no-ff <nazev-vetve>`) ⚠️
 
 Příkaz **`git merge --no-ff`** je **volba**, kterou vynutíte vytvoření **Merge Commit** **vždy**, i když by jinak bylo možné provést Fast-Forward merge.
 
@@ -123,15 +123,9 @@ Příkaz **`git merge --no-ff`** je **volba**, kterou vynutíte vytvoření **Me
 * **Účel:** **Zachování historického kontextu.** Nový merge commit slouží jako "milník", který jasně říká: "Zde se začlenila celá větev `feature-x`."
 * **Doporučení:** Ve většině moderních workflow (např. Gitflow) je tato volba **doporučena** pro sloučení do hlavních větví, protože udržuje historii čistou a srozumitelnou.
 
-3. Fast-Forward Only
+3. Fast-Forward Only (`git merge --ff-only <nazev-vetve>`)
 * Příznak --ff-only (Fast-Forward Only) je speciální volba, kterou se Git merge příkaz instruuje, aby sloučení provedl pouze tehdy, pokud je možný Fast-Forward Merge. 🛑
 * Pokud Fast-Forward Merge možný není, Git sloučení neprovede a namísto toho vrátí chybu.
-
-### git remote show origin
-Příkaz **git remote show origi**n sice nevypisuje jen seznam větví, ale poskytuje komplexní přehled o vzdáleném repozitáři origin, včetně:
-- Seznamu vzdálených větví (Remote branches).
-- Které lokální větve sledují které vzdálené.
-- Jaké akce (jako je push a pull) Git provede pro každou větev.
 
 ## Práce se vzdáleným repozitářem
 ```
@@ -139,7 +133,14 @@ git remote -v	Zobrazí seznam vzdálených repozitářů.
 git push origin <nazev_vetve>	Nahraje (push) lokální commity na vzdálený repozitář (např. origin je obvyklý název pro hlavní vzdálený server).
 git pull origin <nazev_vetve>	Stáhne (fetch a merge) a aplikuje změny z dálky do lokální větve.
 git fetch	Stáhne změny z dálky, ale neaplikuje je na lokální větev.
+
+git remote show origin
+Příkaz **git remote show origin** sice nevypisuje jen seznam větví, ale poskytuje komplexní přehled o vzdáleném repozitáři origin, včetně:
+- Seznamu vzdálených větví (Remote branches).
+- Které lokální větve sledují které vzdálené.
+- Jaké akce (jako je push a pull) Git provede pro každou větev.
 ```
+
 **Zobrazení změn po: git fetch**
 
 Jakmile provedete příkaz **git fetch**, stáhnete nové commity do své lokální kopie vzdálené větve (např. do origin/main), aniž by se změnila vaše lokální pracovní větev.
@@ -158,7 +159,6 @@ git log origin/<nazev_vetve>
 # Např.: git log origin/main
 ```
 
-
 ### Rozdíl mezi git fetch a git pull
 ```
 git fetch	Stáhne commity ze vzdáleného repozitáře, ale neaplikuje je. Cíl změn:	Vzdálená sledovací větev (origin/main)	Když chcete vidět novinky na serveru, ale nechcete je zatím začlenit do své práce.
@@ -166,20 +166,11 @@ git pull	Je zkratka pro git fetch následované git merge (sloučením). Cíl zm
 ```
 pull = fetch + merge
 
-## git remote show origin
-Příkaz **git remote show origi**n sice nevypisuje jen seznam větví, ale poskytuje komplexní přehled o vzdáleném repozitáři origin, včetně:
-- Seznamu vzdálených větví (Remote branches).
-- Které lokální větve sledují které vzdálené.
-- Jaké akce (jako je push a pull) Git provede pro každou větev.
-
-
 # Detached
 
 **Detached HEAD** (v překladu "odpojená hlava") je v Gitu stav, kdy ukazatel **`HEAD`** **neukazuje na název větve**, ale **přímo na konkrétní commit** v historii.
 
 Jde o speciální stav, který není chybou, ale indikuje, že pracujete v režimu, kde vaše nové commity nebudou automaticky přidány na konec žádné pojmenované větve.
-
------
 
 ## Co je to `HEAD`
 
@@ -187,8 +178,7 @@ Nejprve je potřeba pochopit, co je `HEAD`:
 
   * **`HEAD`** je ukazatel (pointer), který v Gitu určuje, na jakém revizi (commit) se aktuálně nachází váš **pracovní adresář**. Určuje tedy to, jaká verze souborů je ve vašem projektu právě načtená.
   * **Normální stav (Attached HEAD):** Obvykle `HEAD` ukazuje na **název větve** (např. `main` nebo `feature-x`). Když pak uděláte nový commit, Git automaticky posune název větve, aby ukazoval na tento nový commit, a `HEAD` ho sleduje.
-
------
+  * Jak zjistím, kam head ukazuje: `git status`. Výsledek: **Your branch is ahead of 'origin/main' by 4 commits.**
 
 ## Co znamená `Detached HEAD`
 
@@ -203,8 +193,6 @@ Nejprve je potřeba pochopit, co je `HEAD`:
 
   * **Riziko ztráty:** Tyto anonymní commity se **snadno ztratí**, jakmile přepnete `HEAD` zpět na pojmenovanou větev (např. `git checkout main`). Budou v podstatě "viset ve vzduchu" a Git je může časem uklidit (garbage collection), pokud je nenajdete v `git reflog`.
 
------
-
 ## Kdy se Detached HEAD používá
 
 Tento stav není k zahození, je užitečný pro:
@@ -212,8 +200,6 @@ Tento stav není k zahození, je užitečný pro:
 1.  **Kontrolu historie:** Chcete se podívat, jak vypadal kód v nějakém konkrétním commitu z minulosti, např. pro testování chyby.
 2.  **Experimentování:** Chcete zkusit nějakou rychlou opravu nebo myšlenku bez ovlivnění stávajících větví. Pokud se experiment nepovede, stačí přepnout zpět, a vaše změny zmizí.
 3.  **Prohlížení tagů:** Tagy (např. verze vydání) jsou fixní a nelze je měnit, takže při jejich prohlížení se automaticky dostanete do Detached HEAD.
-
------
 
 ## Jak se dostat ven (a uložit změny)
 
