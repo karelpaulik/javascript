@@ -30,21 +30,28 @@ git config --list --system
 
 ### Úprava nastavení
 ```
-Základní nastavení:
 git config --uroven <promenna> "<hodnota>"
 
+Základní nastavení (tyto dvě naprosto nutné):
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
 
+Další vhodné nastavení pro spouštění textového editoru pro popis commitů:
 git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -nosession"
 ```
+**Nepovninné argumenty pro Notepad++**
+- multiInst: Zajistí, že se spustí nová instance Notepad++ pro danou Git akci, i když už je jiná instance spuštěná.
+- nosession: Zajistí, že Git neotevře soubory z předchozí sezení, ale pouze prázdný soubor se zprávou, kterou je třeba editovat.
 
 ## Inicializace/klonování repozitáře
+Vytvořit nový repozitář mohu více způsoby. Nejjednodušší způsob: vytvořit vzdálený a klonovat ho.
 ```
-Inicializace:
-git init
+Inicializace (Ruční vytvoření repozitáře je složitější - pro případ, když ho budu chtít ukládat na vzdáleném):
+git init  
+git remote add origin https://github.com/uzivatel/muj-projekt.git  (Vytvořit vzdálený repo a získat z něj url pro tento příkaz. Tento repo musí být prázdný: žádný "readme" nebo ".gitignore")
+git push -u origin main
 
-Klonování existujícího:
+Klonování existujícího (nejjednodušší je vytvořit vzdálený repozitář a pak ho klonovat):
 git clone <url-repozitare>
 ```
 
