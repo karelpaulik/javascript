@@ -46,14 +46,24 @@ git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe
 ## Inicializace/klonování repozitáře
 Vytvořit nový repozitář mohu více způsoby. Nejjednodušší způsob: vytvořit vzdálený a klonovat ho.
 ```
-Inicializace (Ruční vytvoření repozitáře je složitější - pro případ, když ho budu chtít ukládat na vzdáleném):
+#Inicializace (Ruční vytvoření lok.repozitáře pro případ, když ho budu chtít ukládat na vzdáleném. Postup v "cmd" je složitější):
 git init  
 git remote add origin https://github.com/uzivatel/muj-projekt.git  (Vytvořit vzdálený repo a získat z něj url pro tento příkaz. Tento repo musí být prázdný: žádný "readme" nebo ".gitignore")
 git push -u origin main
 
-Klonování existujícího (nejjednodušší je vytvořit vzdálený repozitář a pak ho klonovat):
+#Pokud pracuji s VSCODE je ruční vytvoření lok. repo následným vzdáleným repo jednoduché.
+git init
+// vložení/editace souborů. Vytvoření commitů.
+Tlačítko: Publish Branch - VSCODE vyzve k zadání názvu repozitáře.
+Zadat název repozitáře, Enter
+
+#Klonování existujícího (nejjednodušší je vytvořit vzdálený repozitář a pak ho klonovat. Nemusím definovat: origin):
+// Na github: Vytvořit repozitář
+// Na lokálu:
 git clone <url-repozitare>
 ```
+
+
 
 ## Sledování změn
 ```
