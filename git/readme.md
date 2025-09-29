@@ -108,6 +108,35 @@ git branch -a  Výpis všech větví
 
 Tzn. Před merge se většinou dává **git checkout main**
 
+## Typiská práce při používání větví
+```
+# Zobrazení existujících větví (pro orientaci)
+git branch
+
+# 1. Vytvoření a přepnutí na novou větev (Zkratka)
+# Buď:
+git checkout -b fix1  //Vytvoření a přepnutí v jednom kroku
+# Nebo:
+git branch fix1  //Vytvoření větve
+git checkout fix1  //Přepnutí se na větev
+
+// 2. Editace souborů a kódování...
+
+# 3. Příprava a uložení změn na 'fix1'
+git add .
+git commit -m "feat: Implementace opravy X"
+
+# 4. Příprava na sloučení (Merge)
+git checkout main
+git pull // Zajištění, že máme nejnovější stav z remote
+
+# 5. Sloučení hotové větve do 'main'
+git merge fix1
+
+# 6. Úklid (Smazání lokální větve)
+git branch -d fix1
+```
+
 ### Typy merge
 ```
 --ff  Fast forward, není nutno zadávat, je to Default
