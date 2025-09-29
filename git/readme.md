@@ -54,13 +54,32 @@ git status	Zobrazí stav pracovního adresáře a staging area. Ukáže, které 
 git add <soubor>	Přidá konkrétní soubor do staging area (připraví ho k commitu).
 git add .	Přidá všechny změněné a nesledované soubory v aktuálním adresáři a podadresářích do staging area.
 git diff	Zobrazí rozdíly mezi pracovním adresářem a staging area.
-git log  Zobrazí historii commitů
-git log --oneline
+
+Použití diff:
+git diff
+git diff --staged
+
+git diff <prvni_bod> <druhy_bod>
+# Např.: git diff HEAD HEAD^   (Rozdíl mezi aktuálním a předposledním commitem)
+# Např.: git diff main feature-x (Rozdíl mezi větvemi main a feature-x)
+
+Pozn: HEAD vs. HEAD^
+HEAD  Ukazatel na: Aktuální (poslední) commit
+HEAD^  Ukazatel na: Předchozí (předposlední) commit
 ```
+
 ## Ukládání změn
 ```
 git commit
 git commit -m "Popis commitu"
+```
+
+## Prohlížení historie a detailů commitů
+```
+git log  Zobrazí historii commitů
+git log --oneline
+
+git show Zobrazí detailní obsah (metadata a diff) jednoho commitu.
 ```
 
 ## Větve
