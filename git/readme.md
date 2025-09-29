@@ -72,6 +72,7 @@ HEAD^  Ukazatel na: Předchozí (předposlední) commit
 ```
 git commit
 git commit -m "Popis commitu"
+git commit --amend  Nevytvoří nový commit, ale změny uloží do posledního existujícího commitu.
 ```
 
 ## Prohlížení historie a detailů commitů
