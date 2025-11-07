@@ -1,0 +1,43 @@
+Základní nastavení flexboxu pro quasar
+
+Neresponzivní design
+<div class="row q-gutter-xs q-pa-xs">
+	<div class="col-3">Obsah</div>
+	<div class="col">Obsah</div>		//Takto vyplním zvávající šířku
+	<div class="col-3">Obsah</div>
+</div>
+
+Responzivní design
+<div class="row q-gutter-xs q-pa-xs">
+	<div class="col-sm-3 col-xs-12">Obsah</div>
+	<div class="col-sm   col-xs-12">Obsah</div>
+	<div class="col-sm-3 col-xs-12">Obsah</div>
+</div>
+
+Velikosti pro col
+-----------------
+xs	0px	All window sizes (same as no breakpoint specifier)
+sm	600px	Larger than extra small sized window
+md	1024px	Larger than small window
+lg	1440px	Larger than medium-sized sized window
+xl	1920px	Larger than large sized window
+
+Velikosti pro magrin, padding, gutter
+-----------------
+Třída	Zkratka	Hodnota (pixely)
+Extra Small	xs	4px
+Small	sm	8px
+Medium	md	16px
+Large	lg	24px
+Extra Large	xl	32px
+
+# Jak nastavit css vlastnost pro všechny děti rodičovského elementu:
+    <div class="bg-color-desc">
+      <div>Obsah</div>
+      <div>Obsah</div>
+      <div>Obsah</div>
+    </div>
+
+.bg-color-desc > div {
+  background-color: aqua;
+}
