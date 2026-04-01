@@ -16,6 +16,17 @@ bedobe.eu	1800	A	185.199.111.153
 www.bedobe.eu	1800	CNAME	karelpaulik.github.io	//Pozor, sem se nenastavuje: karelpaulik.github.io/repozitar
 ```
 
+### Kontrola nastavení v cmd
+```
+nslookup mojedomena.cz
+nslookup mojedomena.cz 8.8.8.8 (neptej se svého routrou, ale googlu) !!!Zde bez www
+nslookup -type=a mojedomena.cz 8.8.8.8  (Tento příkaz odpovídá příkazu bez "-type". Tj. pokud není -type, pak stejné jako -type=a)
+nslookup -type=cname www.bedobe.eu 8.8.8.8  !!!Pozor - zde je www
+nslookup -type=ns bedobe.eu 8.8.8.8
+nslookup -type=soa bedobe.eu 8.8.8.8
+
+```
+
 ## github - custom domain
 ```
 bedobe.eu		//Sem se nenastavuje: www.bedobe.eu
