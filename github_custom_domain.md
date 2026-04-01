@@ -18,10 +18,7 @@ www.bedobe.eu	1800	CNAME	karelpaulik.github.io	//Pozor, sem se nenastavuje: kare
 
 ## github - custom domain
 ```
-bedobe.eu		//Sem se nenastavuje: www.bedobe.eu, ale bude fungovat i www.bedobe.eu
-
-Jakmile kontrola pro costom domain proběhne úspěšne, pak zaškrtnout:
-Enforce HTTPS
+bedobe.eu		//Sem se nenastavuje: www.bedobe.eu
 ```
 
 ## Další
@@ -30,4 +27,23 @@ Uvnitř *docs* adresáře bylo potřeba vytvořit prázdný soubor:
 .nojekyll
 
 Kontrola - po nastavení *cuistom domain* se v adresáři *doc* vytvoří soubor *CNAME* obsahující např. *bedobe.eu*
+```
+
+## https
+Jakmile proběhne úspěšně kontrola pro *custom domain* pak zaškrtnout **Enforce HTTPS**
+
+Než naběhne https to může zase trvat.
+
+### refresh po naběhnutí certifikátu
+I po naběhnutí certifikátu může nějakou chvíli trvat, než v běžícím okně začne web fungovat pod https.
+
+Možnosti refresh:
+```
+F5
+ctrl + F5
+F12 -> Podržet LMB nad obnovovací šipkou (vedle adresního řádku). Objeví se: Vymazání mezipaměti a opětovné načtení stránky. !!! Nefunguje bež F12
+cmd as admin: ipconfig /flushdns
+
+Nejspolehlivější je ale:
+Nové anonymní okno (Ctrl + shift +N)
 ```
