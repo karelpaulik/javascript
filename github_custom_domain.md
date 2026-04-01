@@ -4,6 +4,8 @@ DNS servery - tyto se nemění, tzn. pokud např. forpsi, pak jsou zde servery f
 ## Jak dlouho to trvá
 Po nastavení viz. níže trvalo 1 den, než v *github pages* proběhl *DNS check successful*.
 
+Ale samotný přístup na github pages s nastavenou doménou fungoval během 1-2 hodin. Ale jen jako http (ne https).
+
 ## registrátor - forpsi
 ```
 Hostname	TTL	Typ	Hodnota	
